@@ -1,3 +1,9 @@
+This repository is a fork of the original Fuse-swift repo, to be used within <a href="/ivanmathy/Boop">Boop</a>. This repository is not intended to be a successor or replacement to the original; simply a fork that fits Boop's needs. Here are the included changes:
+
+- Upgraded to Swift 5
+- Changed the framework to compile against macOS instead of iOS
+- Cleaned up the unreleased `FuseProperty` changes
+
 # Fuse
 
 [![CI Status](http://img.shields.io/travis/krisk/fuse-swift.svg?style=flat)](https://travis-ci.org/krisk/fuse-swift)

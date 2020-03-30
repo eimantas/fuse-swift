@@ -9,15 +9,15 @@
 import Foundation
 
 public struct FuseProperty {
-    let name: String
+    let value: String?
     let weight: Double
     
-    public init (name: String) {
-        self.init(name: name, weight: 1)
+    public init (value: String?) {
+        self.init(value: value, weight: 1)
     }
     
-    public init (name: String, weight: Double) {
-        self.name = name
+    public init (value: String?, weight: Double) {
+        self.value = value
         self.weight = weight
     }
 }
@@ -420,7 +420,9 @@ extension Fuse {
 
             item.properties.forEach { property in
 
-                let value = property.name
+                guard let value = property.value else {
+                    return
+                }
                 
                 if let result = self.search(pattern, in: value) {
                     let weight = property.weight == 1 ? 1 : 1 - property.weight
@@ -429,7 +431,7 @@ extension Fuse {
                     
                     scores.append(score)
                     
-                    propertyResults.append((key: property.name, score: score, ranges: result.ranges))
+                    propertyResults.append((key: value, score: score, ranges: result.ranges))
                 }
             }
             
@@ -505,7 +507,9 @@ extension Fuse {
 
                     item.properties.forEach { property in
 
-                        let value = property.name
+                        guard let value = property.value else {
+                            return
+                        }
                         
                         if let result = self.search(pattern, in: value) {
                             let weight = property.weight == 1 ? 1 : 1 - property.weight
@@ -514,7 +518,7 @@ extension Fuse {
                             
                             scores.append(score)
                             
-                            propertyResults.append((key: property.name, score: score, ranges: result.ranges))
+                            propertyResults.append((key: value, score: score, ranges: result.ranges))
                         }
                     }
                     
